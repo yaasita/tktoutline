@@ -1,0 +1,43 @@
+*tktoutline.txt*	A plugin to make TEKITOU outline	Last change: 2012/10/27
+
+		tktoutline.vim マニュアル
+
+Version: 1.0
+Author : yaasita
+
+
+1. 概要							|tktoutline-intro|
+2. コマンド						|tktoutline-command|
+3. 設定							|tktoutline-setting|
+
+==============================================================================
+1. 概要							*tktoutline-intro*
+
+tktoutline.vim(適当アウトライン)は適当にアウトラインを表示します。
+pukiwikiのアウトライン表示が欲しかったので、作りました。
+
+==============================================================================
+2. コマンド						*tktoutline-command*
+							*:TktOutline*
+
+以下のコマンドで実行現在開いているバッファのアウトラインが表示されるはずです
+>
+	:TktOutline
+<
+
+==============================================================================
+3. 設定							*tktoutline-setting*
+
+tktoutline.vimはデフォルトで以下の変数を参照して、現在のバッファから
+該当行を抽出⇒不要な文字を削除してアウトラインを作成します
+<
+let g:tkt_outline_gcommand=['^\*']
+let g:tkt_outline_scommand=['\[.\+\]']
+>
+
+filetypeか何かで判定して,autocmdで上記変数を書き換えれば、他のファイルでも
+アウトライン表示が出来るかもしれません
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
