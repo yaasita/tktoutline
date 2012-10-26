@@ -4,8 +4,8 @@
 " tktoutline.vim - A plugin to make TEKITOU outline
 "
 " Version: 1.0
-" Maintainer:	yaasita 
-" Last Change:	2012/10/27 07:08:02.
+" Maintainer:	yaasita < https://github.com/yaasita/tktoutline >
+" Last Change:	2012/10/27 07:13:45.
 
 "initial setting
 let g:tkt_outline_gcommand=['^\*']
