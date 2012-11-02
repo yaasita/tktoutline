@@ -5,15 +5,22 @@
 "
 " Version: 1.0
 " Maintainer:	yaasita < https://github.com/yaasita/tktoutline >
-" Last Change:	2012/10/27 07:13:45.
-
-"initial setting
-let g:tkt_outline_gcommand=['^\*']
-let g:tkt_outline_scommand=['\[.\+\]']
+" Last Change:	2012/11/03.
 
 command! TktOutline call <SID>tktOutline()
 "Function: s:tktOutline() {{{1
 function! s:tktOutline()
+
+    if ! exists("b:tkt_outline_command")
+        call <SID>tktsetting()
+    endif
+    let l:tkt_outline_command = b:tkt_outline_command
+
+    " save current number
+    wincmd h
+    let l:cnumber = line(".")
+
+    " buffer copy
     if bufexists("TktOutline")
         bw TktOutline
     endif
@@ -22,20 +29,18 @@ function! s:tktOutline()
     setlocal bt=nofile noswf
     silent! 1,$delete
 
+    " add line number
     let l:i=1
     while l:i < len(l:lines)+1
         call setline(l:i,l:lines[l:i-1]." ... ".l:i)
         let l:i += 1
     endwhile
 
-    for gc in g:tkt_outline_gcommand
-        exec 'silent! %g!/'.gc.'/d'
+    for tkcmd in l:tkt_outline_command
+        exec "silent!".tkcmd
     endfor
 
-    for sc in g:tkt_outline_scommand
-        exec 'silent! %s/'.sc.'//'
-    endfor
-    :1
+    exec ':'.l:cnumber
     nnoremap <silent> <buffer> <cr> :call <SID>tktjump()<cr>
     nnoremap <silent> <buffer> <C-l> :call <SID>tktOutline()<cr>
 endfunction
@@ -47,4 +52,13 @@ function! s:tktjump()
     exec l:jumpline
     normal zz
 endfunction
-
+"Function: s:tktsetting() {{{1
+function! s:tktsetting()
+    if (&ft == 'pukiwiki')
+        let b:tkt_outline_command=['g!/^\*/d','%s/\[.\+\]//','%s/^\*//','%s/\*/  /g']
+    elseif (&ft == 'redmine')
+        let b:tkt_outline_command=['g!/^h\d/d','%s/^h1\. //','%s/^h2\. /  /','%s/^h3\. /    /g']
+    else "default
+        let b:tkt_outline_command=['g!/^\*/d','%s/\[.\+\]//','%s/^\*//','%s/\*/  /g']
+    endif
+endfunction
