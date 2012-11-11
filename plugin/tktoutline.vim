@@ -5,8 +5,10 @@
 "
 " Version: 1.0
 " Maintainer:	yaasita < https://github.com/yaasita/tktoutline >
-" Last Change:	2012/11/03.
+" Last Change:	2012/11/09.
 
+" b:tkt_outline_command
+" b:tkt_outline_splitw
 command! TktOutline call <SID>tktOutline()
 "Function: s:tktOutline() {{{1
 function! s:tktOutline()
@@ -25,7 +27,10 @@ function! s:tktOutline()
         bw TktOutline
     endif
     let l:lines = getline(1,"$")
-    vertical 40 split TktOutline
+    if ! exists("b:tkt_outline_splitw")
+        let b:tkt_outline_splitw=40
+    endif
+    exec "vertical ".b:tkt_outline_splitw." split TktOutline"
     setlocal bt=nofile noswf
     silent! 1,$delete
 
