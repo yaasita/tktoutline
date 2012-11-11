@@ -5,7 +5,7 @@
 "
 " Version: 1.0
 " Maintainer:	yaasita < https://github.com/yaasita/tktoutline >
-" Last Change:	2012/11/09.
+" Last Change:	2012/11/11.
 
 " b:tkt_outline_command
 " b:tkt_outline_splitw
@@ -32,7 +32,7 @@ function! s:tktOutline()
     endif
     exec "vertical ".b:tkt_outline_splitw." split TktOutline"
     setlocal bt=nofile noswf
-    silent! 1,$delete
+    silent! 1,$delete _
 
     " add line number
     let l:i=1
@@ -44,6 +44,7 @@ function! s:tktOutline()
     for tkcmd in l:tkt_outline_command
         exec "silent!".tkcmd
     endfor
+    setlocal noma
 
     exec ':'.l:cnumber
     nnoremap <silent> <buffer> <cr> :call <SID>tktjump()<cr>
@@ -63,6 +64,8 @@ function! s:tktsetting()
         let b:tkt_outline_command=['g!/^\*/d','%s/\[.\+\]//','%s/^\*//','%s/\*/  /g']
     elseif (&ft == 'redmine')
         let b:tkt_outline_command=['g!/^h\d/d','%s/^h1\. //','%s/^h2\. /  /','%s/^h3\. /    /g']
+    elseif (&ft == 'cobol')
+        let b:tkt_outline_command=['g!/^......[^\*].*\(DIVISION\|SECTION\)/d','%s/^......\s*//','%s/^\(.*SECTION.*\)/  \1/']
     else "default
         let b:tkt_outline_command=['g!/^\*/d','%s/\[.\+\]//','%s/^\*//','%s/\*/  /g']
     endif
