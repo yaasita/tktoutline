@@ -3,7 +3,7 @@
 "
 " tktoutline.vim - A plugin to make TEKITOU outline
 "
-" Version: 1.0
+" Version: 1.2
 " Maintainer:	yaasita < https://github.com/yaasita/tktoutline >
 " Last Change:	2012/11/11.
 
@@ -66,6 +66,8 @@ function! s:tktsetting()
         let b:tkt_outline_command=['g!/^h\d/d','%s/^h1\. //','%s/^h2\. /  /','%s/^h3\. /    /g']
     elseif (&ft == 'cobol')
         let b:tkt_outline_command=['g!/^......[^\*].*\(DIVISION\|SECTION\)/d','%s/^......\s*//','%s/^\(.*SECTION.*\)/  \1/']
+    elseif (&ft == 'yaml')
+        let b:tkt_outline_command=['g/^\s\{5\}/d']
     else "default
         let b:tkt_outline_command=['g!/^\*/d','%s/\[.\+\]//','%s/^\*//','%s/\*/  /g']
     endif

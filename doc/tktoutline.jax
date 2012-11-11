@@ -2,19 +2,21 @@
 
 		tktoutline.vim マニュアル
 
-Version: 1.0
+Version: 1.2
 Author : yaasita < https://github.com/yaasita/tktoutline >
 
 
 1. 概要							|tktoutline-intro|
 2. コマンド						|tktoutline-command|
 3. 設定							|tktoutline-setting|
+4. 独自アウトライン表示					|tktoutline-mysetting|
 
 ==============================================================================
 1. 概要							*tktoutline-intro*
 
 tktoutline.vim(適当アウトライン)は適当にアウトラインを表示します。
 pukiwikiのアウトライン表示が欲しかったので、作りました。
+現在はpukiwiki,redmine,cobol,yamlのアウトライン表示に対応しています。
 
 ==============================================================================
 2. コマンド						*tktoutline-command*
@@ -28,15 +30,54 @@ pukiwikiのアウトライン表示が欲しかったので、作りました。
 ==============================================================================
 3. 設定							*tktoutline-setting*
 
-tktoutline.vimはデフォルトで以下の変数を参照して、現在のバッファから
-該当行を抽出⇒不要な文字を削除してアウトラインを作成します
-<
-let g:tkt_outline_gcommand=['^\*']
-let g:tkt_outline_scommand=['\[.\+\]']
->
+tktoutline.vimは以下の変数を参照して、アウトラインを作成します。
 
-filetypeか何かで判定して,autocmdで上記変数を書き換えれば、他のファイルでも
-アウトライン表示が出来るかもしれません
+							*b:tkt_outline_command*
+    この変数にはアウトラインを表示するための不要な行の削除や、整形のコマンドを
+    書いておきます。例えば、以下のように指定した場合
+>
+    let b:tkt_outline_command=['g!/^\*/d','%s/\[.\+\]//','%s/^\*//','%s/\*/  /g']
+<
+   現在のバッファをコピーし行番号を付与した後に以下のコマンドを順次実行します
+>
+    :'g!/^\*/d'
+    :'%s/\[.\+\]//'
+    :'%s/^\*//'
+    :'%s/\*/  /g'
+<
+   この変数は存在しなければ、システムデフォルトの値が使用されますが、存在して
+   いる場合は上書きをしません。そのため、独自にアウトライン表示をカスタマイズ
+   することが出来ます。
+   アウトライン表示のカスタマイズは|tktoutline-mysetting|を参照ください
+
+
+							*b:tkt_outline_splitw*
+   ウィンドウを縦分割したときの幅を指定します。指定しなかった場合は40となります
+
+
+==============================================================================
+4. 独自アウトライン表示					*tktoutline-mysetting*
+
+アウトライン表示のカスタマイズは|b:tkt_outline_command|を変更することによって
+行います
+  
+   例えば、ファイルタイプがrubyの場合
+   classとdefで始まる行を抽出するアウトラインは以下のような設定をvimrcに追記し
+   ます
+>
+    autocmd Filetype ruby  let b:tkt_outline_command=['g!/^\s*\(class\|def\)/d']
+<
+   この状態で|:TktOutline|コマンドを実行すると設定したアウトラインが表示されます
+
+   同じファイルタイプで2種類以上のアウトライン表示を行いたい場合は
+   コマンドを分ける必要があります
+   以下はrubyでclass行だけを抽出するアウトライン表示コマンド:RubyClassOTと
+   def行だけをアウトライン表示するコマンド:RubyDefOT
+   を定義した場合の例です
+>
+    command RubyClassOT let b:tkt_outline_command=['g!/^\s*class/d'] | TktOutline
+    command RubyDefOT   let b:tkt_outline_command=['g!/^\s*def/d']   | TktOutline
+<
 
 
 ==============================================================================
