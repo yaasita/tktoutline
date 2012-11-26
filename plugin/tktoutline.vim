@@ -5,7 +5,7 @@
 "
 " Version: 1.2
 " Maintainer:	yaasita < https://github.com/yaasita/tktoutline >
-" Last Change:	2012/11/11.
+" Last Change:	2012/11/27.
 
 " b:tkt_outline_command
 " b:tkt_outline_splitw
@@ -61,7 +61,7 @@ endfunction
 "Function: s:tktsetting() {{{1
 function! s:tktsetting()
     if (&ft == 'pukiwiki')
-        let b:tkt_outline_command=['g!/^\*/d','%s/\[.\+\]//','%s/^\*//','%s/\*/  /g']
+        let b:tkt_outline_command=['g!/^\*/d','%s/\[.\+\]//','%s/^\(\*\+\)\s*/\1/c','%s/^\*//','%s/\*/  /g']
     elseif (&ft == 'redmine')
         let b:tkt_outline_command=['g!/^h\d/d','%s/^h1\. //','%s/^h2\. /  /','%s/^h3\. /    /g']
     elseif (&ft == 'cobol')
