@@ -1,24 +1,27 @@
-* tktoutline (�e�L�g�[�A�E�g���C��)
+* tktoutline (テキトーアウトライン)
 
-* ����͉��H
-���͂��A�E�g���C���\�����܂�
-pukiwiki�ɍ��܂������A���̑��̃t�@�C���^�C�v�ɂ��g���܂�
+* これは何？
+文章をアウトライン表示します
+pukiwikiに作りましたが、その他のファイルタイプにも使えます
 
-* �C���X�g�[��
-vundle�ŊǗ�����Ă���ꍇ��
+* インストール
+vundleで管理されている場合は
  Bundle 'yaasita/tktoutline'
-��vimrc�ɒǉ����Ĉȉ��̃R�}���h�ŃC���X�g�[������܂�
+をvimrcに追加して以下のコマンドでインストールされます
  :BundleInstall
 
-�蓮�œ����ꍇ��~/.vim�ɃR�s�[���܂�
+手動で入れる場合は‾/.vimにコピーします
 
-* �g����
-�ȉ��̃R�}���h�Ŏ��s���݊J���Ă���o�b�t�@�̃A�E�g���C�����\�������͂��ł�
+* 使い方
+以下のコマンドで実行現在開いているバッファのアウトラインが表示されるはずです
  :TktOutline
 
-* �w���v
+* ヘルプ
  :h tktoutline.txt@ja
 
-* ���̑�
-�ݒ���s�����ƂŁA�f�t�H���g�̃A�E�g���C���\����ύX������A
-�Ή����Ă��Ȃ����͂ɂ��K�p�ł��܂�
+* その他
+設定を行うことで、デフォルトのアウトライン表示を変更したり、
+対応していない文章にも適用できます
+
+表示サンプル
+https://github.com/yaasita/tktoutline/wiki
