@@ -5,7 +5,7 @@
 "
 " Version: 1.2
 " Maintainer:	yaasita < https://github.com/yaasita/tktoutline >
-" Last Change:	2012/11/27.
+" Last Change:	2012/11/28.
 
 " b:tkt_outline_command
 " b:tkt_outline_splitw
@@ -13,17 +13,18 @@ command! TktOutline call <SID>tktOutline()
 "Function: s:tktOutline() {{{1
 function! s:tktOutline()
 
+    wincmd l
     if ! exists("b:tkt_outline_command")
         call <SID>tktsetting()
     endif
     let l:tkt_outline_command = b:tkt_outline_command
 
-    " save current number
-    wincmd h
-    let l:cnumber = line(".")
-
     " buffer copy
+    let l:cnumber = 1
     if bufexists("TktOutline")
+        " save current number
+        wincmd h
+        let l:cnumber = line(".")
         bw TktOutline
     endif
     let l:lines = getline(1,"$")
