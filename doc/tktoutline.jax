@@ -1,4 +1,4 @@
-*tktoutline.txt*	てきとーアウトライン	Last Change: 2012/11/12.
+*tktoutline.txt*	てきとーアウトライン	Last Change: 2012/11/29.
 		plugin to make TEKITOU outline
 
 		tktoutline.vim マニュアル
@@ -57,6 +57,10 @@ tktoutline.vimは以下の変数を参照して、アウトラインを作成し
 
 							*b:tkt_outline_splitw*
    ウィンドウを縦分割したときの幅を指定します。指定しなかった場合は40となります
+   例えば幅を60にする場合は以下のようにします
+>
+    let b:tkt_outline_splitw=40
+<
 
 
 ==============================================================================
