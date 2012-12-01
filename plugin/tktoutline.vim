@@ -5,7 +5,7 @@
 "
 " Version: 1.2
 " Maintainer:	yaasita < https://github.com/yaasita/tktoutline >
-" Last Change:	2012/11/28.
+" Last Change:	2012/12/01.
 
 " b:tkt_outline_command
 " b:tkt_outline_splitw
@@ -70,6 +70,6 @@ function! s:tktsetting()
     elseif (&ft == 'yaml')
         let b:tkt_outline_command=['g/^\s\{5\}/d']
     else "default
-        let b:tkt_outline_command=['g!/^\*/d','%s/\[.\+\]//','%s/^\*//','%s/\*/  /g']
+        let b:tkt_outline_command=['g!/^\*/d','%s/\[.\+\]//','%s/^\(\*\+\)\s*/\1/','%s/^\*//','%s/\*/  /g']
     endif
 endfunction
