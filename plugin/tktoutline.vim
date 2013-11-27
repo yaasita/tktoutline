@@ -49,6 +49,7 @@ function! s:tktOutline()
     exec ':'.l:cnumber
     nnoremap <silent> <buffer> <cr> :call <SID>tktjump()<cr>
     nnoremap <silent> <buffer> <C-l> :call <SID>tktOutline()<cr>
+    nnoremap <silent> <buffer> q :q<cr>
 endfunction
 "Function: s:tktjump() {{{1
 function! s:tktjump()
