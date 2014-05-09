@@ -19,12 +19,6 @@ NeoBundleの方は以下を.vimrcに追加後`:NeoBundleInstall`でインスト�
 
 手動で入れる場合はファイル一式を‾/.vimにコピーします
 
-    ~/.vim
-        |_ doc
-        |_ ftdetect
-        |_ plugin
-        |_ syntax
-
 ## 使い方
 
 以下のコマンドで実行現在開いているバッファのアウトラインが表示されるはずです
