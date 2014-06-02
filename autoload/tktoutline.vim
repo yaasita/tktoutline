@@ -43,10 +43,11 @@ function! tktoutline#tktOutline() "{{{
         exec "silent!".tkcmd
     endfor
     setlocal noma
+    setlocal nowrap
 
     exec ':'.l:cnumber
     nnoremap <silent> <buffer> <cr> :call <SID>tktjump()<cr>
-    nnoremap <silent> <buffer> <C-l> :call <SID>tktOutline()<cr>
+    nnoremap <silent> <buffer> <C-l> :call tktoutline#tktOutline()<cr>
     nnoremap <silent> <buffer> q :q<cr>
 endfunction "}}}
 function! s:tktjump() "{{{
