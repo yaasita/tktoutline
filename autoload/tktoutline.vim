@@ -67,7 +67,7 @@ function! s:tktsetting() "{{{
     elseif (&ft == 'yaml')
         let b:tkt_outline_command=['g/^\s\{5\}/d']
     elseif (&ft == 'html')
-        let b:tkt_outline_command=['g!/^<h[123]>/d','%s/^<h2>\(.*\)<\/h2>/  \1/','%s/^<h3>\(.*\)<\/h3>/    \1/']
+        let b:tkt_outline_command=['g!/\v\<h[123][^\>]*\>/d','%s/\v\<h1[^\>]*\>(.+)\<\/h1\>/\1/','%s/\v\<h2[^\>]*\>(.+)\<\/h2\>/  \1/','%s/\v\<h3[^\>]*\>(.+)\<\/h3\>/    \1/']
     elseif (&ft == 'markdown' || &ft == 'mkd')
         let b:tkt_outline_command=['g!/^#/d', '%s/^\(\#\+\)\s*/\1/', '%s/^\(\#\+\)\s*/\1/', '%s/^\#//', '%s/\#/  /g']
     else "default
